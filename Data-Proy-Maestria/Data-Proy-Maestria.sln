@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Data-Proy-Maestria", "Data-Proy-Maestria.sqlproj", "{86E961FB-791B-40FE-B443-38539653799C}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Data-Proy-MaestriaOLTP", "Data-Proy-MaestriaOLTP.sqlproj", "{86E961FB-791B-40FE-B443-38539653799C}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Data-Proy-MaestriaDW", "..\Data-Proy-MaestriaDW\Data-Proy-MaestriaDW.sqlproj", "{C2DE7539-730B-46B1-8821-08B21EC4AA1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,12 @@ Global
 		{86E961FB-791B-40FE-B443-38539653799C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86E961FB-791B-40FE-B443-38539653799C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86E961FB-791B-40FE-B443-38539653799C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C2DE7539-730B-46B1-8821-08B21EC4AA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DE7539-730B-46B1-8821-08B21EC4AA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DE7539-730B-46B1-8821-08B21EC4AA1E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C2DE7539-730B-46B1-8821-08B21EC4AA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DE7539-730B-46B1-8821-08B21EC4AA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2DE7539-730B-46B1-8821-08B21EC4AA1E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

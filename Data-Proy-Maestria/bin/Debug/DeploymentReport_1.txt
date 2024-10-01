@@ -1,0 +1,35 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a crear con los datos migrados
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       Ninguno
+
+** Acciones del usuario
+     Crear
+       [dbo].[Autobus] (Tabla)
+       [dbo].[Billete] (Tabla)
+       [dbo].[Conductor] (Tabla)
+       [dbo].[Lugar] (Tabla)
+       [dbo].[Pasajero] (Tabla)
+       [dbo].[Reparacion] (Tabla)
+       [dbo].[Revision] (Tabla)
+       [dbo].[Servicio] (Tabla)
+       [dbo].[Viaje] (Tabla)
+       Clave externa: <sin nombre> (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+       [dbo].[Revision_Reparacion] (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+       Clave externa: <sin nombre> (Clave externa)
+
+** Acciones de compatibilidad
+
+Las bases de datos del proyecto y de destino tienen una configuración de intercalación diferente. Se pueden producir errores de implementación.
+

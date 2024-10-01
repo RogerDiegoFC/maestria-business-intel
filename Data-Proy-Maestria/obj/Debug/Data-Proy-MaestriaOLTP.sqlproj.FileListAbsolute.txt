@@ -1,0 +1,6 @@
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\bin\Debug\Data-Proy-MaestriaOLTP.dacpac
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\bin\Debug\Data_Proy_Maestria.dll
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\bin\Debug\Data_Proy_Maestria.pdb
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Data-Proy-MaestriaOLTP.sqlproj.AssemblyReference.cache
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Data_Proy_Maestria.dll
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Data_Proy_Maestria.pdb

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Data_Proy_Maestria</Name>
+    <Name>Data-Proy-MaestriaOLTP</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{86e961fb-791b-40fe-b443-38539653799c}</ProjectGuid>
@@ -56,5 +56,18 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Schema" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\Ruta.sql" />
+    <Build Include="Schema\Autobus.sql" />
+    <Build Include="Schema\Conductor.sql" />
+    <Build Include="Schema\Servicio.sql" />
+    <Build Include="Schema\Viaje.sql" />
+    <Build Include="Schema\Pasajero.sql" />
+    <Build Include="Schema\Billete.sql" />
+    <Build Include="Schema\Lugar.sql" />
+    <Build Include="Schema\Revision.sql" />
+    <Build Include="Schema\Reparacion.sql" />
   </ItemGroup>
 </Project>
