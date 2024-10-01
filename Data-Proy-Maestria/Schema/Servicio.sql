@@ -3,6 +3,8 @@
     [idRuta] INTEGER,
     [idConductor] INTEGER,
     [idAutobus] INTEGER,
+    [tarifaTransporte] DECIMAL(10,2),
+    [tarifaActividadTuristica] DECIMAL(10,2),
     [horaSalida] TIME NOT NULL,
     [horaLlegadaEstimada] TIME,
     [esServicioDiario] BIT,
@@ -12,7 +14,7 @@
     [jueves] BIT,
     [viernes] BIT,
     [sabado] BIT,
-    [domin ] BIT,
+    [domingo] BIT,
     [esParaDiaFestivo] BIT,
     PRIMARY KEY ([idServicio])
 );

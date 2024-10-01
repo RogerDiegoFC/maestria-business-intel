@@ -3,6 +3,7 @@
     [idAutobus] INTEGER,
     [fechaRevision] DATE NOT NULL,
     [diagnostico] NVARCHAR(max),
+    [costoRevision] DECIMAL(10,2),
     PRIMARY KEY ([idRevision])
 );
 go

@@ -4,6 +4,7 @@
     [codigoReparacion] NVARCHAR(20),
     [tiempoEmpleado] INTEGER,
     [comentarioReparacion] NVARCHAR(max),
+    [costoReparacion] DECIMAL(10,2),
     PRIMARY KEY ([idReparacion])
 );
 go

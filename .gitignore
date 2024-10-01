@@ -1,2 +1,6 @@
 *.bat
 *.vsidx
+*.dbmdl
+*.txt
+*publish.sql
+*.jfm
