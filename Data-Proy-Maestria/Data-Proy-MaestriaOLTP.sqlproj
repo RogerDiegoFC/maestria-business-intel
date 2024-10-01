@@ -57,6 +57,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Schema" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Ruta.sql" />
@@ -69,5 +70,21 @@
     <Build Include="Schema\Lugar.sql" />
     <Build Include="Schema\Revision.sql" />
     <Build Include="Schema\Reparacion.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\clean.data.sql" />
+    <None Include="Scripts\Pasajero.data.sql" />
+    <None Include="Scripts\Ruta.data.sql" />
+    <None Include="Scripts\Conductor.data.sql" />
+    <None Include="Scripts\Autobus.data.sql" />
+    <None Include="Scripts\Revision.data.sql" />
+    <None Include="Scripts\Reparacion.data.sql" />
+    <None Include="Scripts\Lugar.data.sql" />
+    <None Include="Scripts\Servicio.data.sql" />
+    <None Include="Scripts\Viaje.data.sql" />
+    <None Include="Scripts\Billete.data.sql" />
   </ItemGroup>
 </Project>
