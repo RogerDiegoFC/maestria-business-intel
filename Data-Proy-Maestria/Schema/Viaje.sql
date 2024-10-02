@@ -5,6 +5,9 @@
     [horasTotalesViaje] DECIMAL(10,2),
     [horaRealLlegada] TIME,
     [horaRealSalida] TIME,
+    [kilometrosRecorridoReal] DECIMAL(10,2),
+    finalizado bit,
+    version rowversion,
     PRIMARY KEY ([idViaje])
 );
 go 

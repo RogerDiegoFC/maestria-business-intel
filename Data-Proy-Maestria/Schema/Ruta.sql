@@ -4,5 +4,6 @@
     [duracionAproximadaHoras] INTEGER NOT NULL,
     [esMasAtractiva] BIT,
     [kilometrosRecorrido] DECIMAL(10,2),
+     version rowversion,
     PRIMARY KEY ([idRuta])
 )

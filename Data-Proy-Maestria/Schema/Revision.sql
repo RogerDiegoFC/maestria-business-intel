@@ -4,6 +4,7 @@
     [fechaRevision] DATE NOT NULL,
     [diagnostico] NVARCHAR(max),
     [costoRevision] DECIMAL(10,2),
+     version rowversion,
     PRIMARY KEY ([idRevision])
 );
 go

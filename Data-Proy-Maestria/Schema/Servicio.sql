@@ -16,6 +16,7 @@
     [sabado] BIT,
     [domingo] BIT,
     [esParaDiaFestivo] BIT,
+     version rowversion,
     PRIMARY KEY ([idServicio])
 );
 go
