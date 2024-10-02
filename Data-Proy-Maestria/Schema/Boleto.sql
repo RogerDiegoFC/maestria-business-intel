@@ -3,6 +3,7 @@
     [idTurista] INTEGER,
     [fechaEmision] datetime,
     [codigoBoleto] VARCHAR(40),
+     version rowversion,
     PRIMARY KEY ([idBoleto])
 )
 GO

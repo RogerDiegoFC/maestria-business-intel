@@ -5,6 +5,7 @@
     [tiempoEmpleado] INTEGER,
     [comentarioReparacion] NVARCHAR(max),
     [costoReparacion] DECIMAL(10,2),
+     version rowversion,
     PRIMARY KEY ([idReparacion])
 );
 go

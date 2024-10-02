@@ -7,6 +7,7 @@
     [incluyeTransporte] BIT,
     [incluyeActividadTuristica] BIT,
     [fechaCompra] datetime,
+     version rowversion,
     PRIMARY KEY ([idCompra])
 )
 GO
