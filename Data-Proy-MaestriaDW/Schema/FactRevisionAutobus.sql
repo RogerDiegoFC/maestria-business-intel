@@ -3,7 +3,7 @@
     [idAutobusSk] INTEGER,
     [idRevisionHistorico] INTEGER,
     [idReparacionHistorico] INTEGER,
-    [idRevisionFechaRevisionSk] INTEGER,
+    [idRevisionFechaRevision] INTEGER,
     [revisionDiagnostico] NVARCHAR(max),
     [revisionCostoRevision] DECIMAL(10,2),
     [reparacionExisteReparacion] BIT,

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Compra] (
-    [idCompra] INTEGER IDENTITY(0,1) NOT NULL,
+    [idCompra] INTEGER IDENTITY(1,1) NOT NULL,
     [idViaje] INTEGER,
     [idBoleto] INTEGER,
     [costoTransporte] DECIMAL(10,2) NOT NULL,
@@ -7,7 +7,7 @@
     [incluyeTransporte] BIT,
     [incluyeActividadTuristica] BIT,
     [fechaCompra] datetime,
-     version rowversion,
+     [rowVersion] rowversion,
     PRIMARY KEY ([idCompra])
 )
 GO

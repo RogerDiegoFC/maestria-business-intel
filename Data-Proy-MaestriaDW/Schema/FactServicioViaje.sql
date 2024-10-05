@@ -25,13 +25,13 @@
     [viajeHoraRealLlegada] TIME,
     [viajeHoraRealSalida] TIME,
     [viajeKilometrosRecorridoReal] DECIMAL(10,2),
-    [idViajeFechaViajeSk] INTEGER,
+    [idViajeFechaViaje] INTEGER,
     [viajeFinalizado] BIT,
     [compraCostoTransporte] DECIMAL(10,2) NOT NULL,
     [compraCostoActividadTuristica] DECIMAL(10,2),
     [compraIncluyeTransporte] BIT,
     [compraIncluyeActividadTuristica] BIT,
-    [idCompraFechaCompraSk] INTEGER,
+    [idCompraFechaCompra] INTEGER,
     PRIMARY KEY ([idServicioViajeSk])
 )
 GO

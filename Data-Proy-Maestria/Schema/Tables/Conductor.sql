@@ -4,6 +4,6 @@
     [nombreCompleto] NVARCHAR(300) NOT NULL,
     [telefono] NVARCHAR(20),
     [direccion] NVARCHAR(500),
-     version rowversion,
+     [rowVersion] rowversion,
     PRIMARY KEY ([idConductor])
 )

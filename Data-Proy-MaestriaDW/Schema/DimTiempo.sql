@@ -1,11 +1,10 @@
 ﻿CREATE TABLE [DimTiempo] (
-    [idTiempoSk] INTEGER IDENTITY(0,1) NOT NULL,
-    [fechaCompleta] DATETIME NOT NULL,
-    [fechaSoloDia] DATE,
+    [fechaId] INTEGER  NOT NULL,
+    [fechaCompleta] DATE NOT NULL,    
     [anio] INTEGER NOT NULL,
     [mes] INTEGER,
     [dia] INTEGER,
     [diaSemana] INTEGER,
     [esFestivo] BIT,
-    PRIMARY KEY ([idTiempoSk])
+    PRIMARY KEY ([fechaId])
 )

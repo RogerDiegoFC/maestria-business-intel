@@ -5,7 +5,7 @@
     [horaPrevistaLlegada] TIME,
     [actividad] NVARCHAR(max),
     [tiempoParadaHoras] INTEGER,
-     version rowversion,
+     [rowVersion] rowversion,
     PRIMARY KEY ([idLugar])
 );
 go

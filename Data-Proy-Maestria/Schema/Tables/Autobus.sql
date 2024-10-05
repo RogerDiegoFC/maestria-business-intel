@@ -5,6 +5,6 @@
     [fabricante] NVARCHAR(100),
     [numeroPlazas] INTEGER,
     [caracteristicas] NVARCHAR(max),
-     version rowversion,
+     [rowVersion] rowversion,
     PRIMARY KEY ([idAutobus])
 )

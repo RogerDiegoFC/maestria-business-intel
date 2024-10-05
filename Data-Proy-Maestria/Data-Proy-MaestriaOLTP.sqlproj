@@ -58,19 +58,27 @@
     <Folder Include="Properties" />
     <Folder Include="Schema" />
     <Folder Include="Scripts" />
+    <Folder Include="Schema\Programmability" />
+    <Folder Include="Schema\Tables" />
+    <Folder Include="Schema\Programmability\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Schema\Ruta.sql" />
-    <Build Include="Schema\Autobus.sql" />
-    <Build Include="Schema\Conductor.sql" />
-    <Build Include="Schema\Servicio.sql" />
-    <Build Include="Schema\Viaje.sql" />
-    <Build Include="Schema\Turista.sql" />
-    <Build Include="Schema\Boleto.sql" />
-    <Build Include="Schema\Lugar.sql" />
-    <Build Include="Schema\Revision.sql" />
-    <Build Include="Schema\Reparacion.sql" />
-    <Build Include="Schema\Compra.sql" />
+    <Build Include="Schema\Tables\Autobus.sql" />
+    <Build Include="Schema\Tables\Boleto.sql" />
+    <Build Include="Schema\Tables\Compra.sql" />
+    <Build Include="Schema\Tables\Conductor.sql" />
+    <Build Include="Schema\Tables\Lugar.sql" />
+    <Build Include="Schema\Tables\Reparacion.sql" />
+    <Build Include="Schema\Tables\Revision.sql" />
+    <Build Include="Schema\Tables\Ruta.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetDatabaseRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetTuristaChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetBoletoChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetConductorChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetAutobusChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetRutaLugarChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetServicioCompraChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetRevisionReparacionChangesByRowVersion.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
@@ -88,5 +96,10 @@
     <None Include="Scripts\Viaje.data.sql" />
     <None Include="Scripts\Boleto.data.sql" />
     <None Include="Scripts\Compra.data.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\Tables\Servicio.sql" />
+    <Build Include="Schema\Tables\Turista.sql" />
+    <Build Include="Schema\Tables\Viaje.sql" />
   </ItemGroup>
 </Project>

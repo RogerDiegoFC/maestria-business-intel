@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [Boleto] (
-    [idBoleto] INTEGER IDENTITY(0,1) NOT NULL,
+    [idBoleto] INTEGER IDENTITY(1,1) NOT NULL,
     [idTurista] INTEGER,
     [fechaEmision] datetime,
     [codigoBoleto] VARCHAR(40),
-     version rowversion,
+     [rowVersion] rowversion,
     PRIMARY KEY ([idBoleto])
 )
 GO
