@@ -4,6 +4,6 @@
     [anio] INTEGER NOT NULL,
     [mes] INTEGER,
     [dia] INTEGER,
-    [diaSemana] INTEGER,
-    [esFestivo] BIT
+    [diaSemana] INTEGER
+   
 )

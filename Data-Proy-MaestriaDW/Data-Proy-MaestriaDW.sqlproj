@@ -64,6 +64,7 @@
     <Folder Include="Schema\Tables" />
     <Folder Include="Schema\Tables\dbo" />
     <Folder Include="Schema\Tables\staging" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Security\schemas\staging.sql" />
@@ -94,5 +95,11 @@
     <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimTurista.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\DW_MergeFactRevisionAutobus.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\DW_MergeFactServicioViaje.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\PackageConfig.data.sql" />
+    <None Include="Scripts\DimDate.data.sql" />
+    <None Include="Scripts\PatchDimDate.data.sql" />
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

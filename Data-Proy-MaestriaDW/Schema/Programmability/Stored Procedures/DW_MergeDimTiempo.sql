@@ -6,8 +6,7 @@ BEGIN
         [anio]               = st.[anio],
         [mes]                = st.[mes],
         [dia]                = st.[dia],
-        [diaSemana]          = st.[diaSemana],
-        [esFestivo]          = st.[esFestivo]
+        [diaSemana]          = st.[diaSemana]       
     FROM [dbo].[DimTiempo] dt
     INNER JOIN [staging].[Tiempo] st ON dt.[fechaId] = st.[fechaId];
 END;

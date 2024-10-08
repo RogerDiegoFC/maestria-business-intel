@@ -1,0 +1,1344 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/5/2024 1:37:41 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAP_ROG_ESP"
+  DTS:CreatorName="LAP_ROG_ESP\night"
+  DTS:DTSID="{643CD20C-C890-40E6-98C8-BA826B708940}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="DimAutobus"
+  DTS:PackageType="5"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{44058D53-C1C6-4ABC-B57C-1FD565555604}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{42601EA5-B581-4EA2-82C6-6D7F1B87C5C3}"
+      DTS:ObjectName="destino.ProyMaestriaDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAP_ROG_ESP;Initial Catalog=ProyMaestriaDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{42601EA5-B581-4EA2-82C6-6D7F1B87C5C3}LAP_ROG_ESP.ProyMaestriaDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.ProyMaestriaOLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8CD05F21-0EAB-475B-83D7-74311076968E}"
+      DTS:ObjectName="origen.ProyMaestriaOLTP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAP_ROG_ESP;Initial Catalog=ProyMaestriaOLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{8CD05F21-0EAB-475B-83D7-74311076968E}LAP_ROG_ESP.ProyMaestriaOLTP;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D4030D85-79BD-418E-940E-60D9C45E635A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dbts">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6BF5016-1B92-4459-9535-8ED9B3AC5424}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="lastRowVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Actualizar staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{B79FE248-E232-4FCF-8D09-91B6D3F1DFD6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Actualizar staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42601EA5-B581-4EA2-82C6-6D7F1B87C5C3}"
+          SQLTask:SqlStatementSource="EXECUTE  [dbo].[DW_MergeDimAutobus] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CargarDatos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7232ED2A-E42C-488F-93C6-274E454BD1FC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CargarDatos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CargarDatos\cargar dim"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="cargar dim"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimAutobus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\cargar dim.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[matricula]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="matricula"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[matricula]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[matricula]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[modelo]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="modelo"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[modelo]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[modelo]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[fabricante]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="fabricante"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[fabricante]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[fabricante]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[numeroPlazas]"
+                      cachedDataType="i4"
+                      cachedName="numeroPlazas"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[numeroPlazas]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[numeroPlazas]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[caracteristicas]"
+                      cachedDataType="nText"
+                      cachedName="caracteristicas"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[caracteristicas]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[caracteristicas]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[idAutobus]"
+                      cachedDataType="i4"
+                      cachedName="idAutobus"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusHistorico]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[idAutobus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusSk]"
+                      dataType="i4"
+                      name="idAutobusSk" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusHistorico]"
+                      dataType="i4"
+                      name="idAutobusHistorico" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[matricula]"
+                      dataType="wstr"
+                      length="20"
+                      name="matricula" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[modelo]"
+                      dataType="wstr"
+                      length="100"
+                      name="modelo" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[fabricante]"
+                      dataType="wstr"
+                      length="100"
+                      name="fabricante" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[numeroPlazas]"
+                      dataType="i4"
+                      name="numeroPlazas" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[caracteristicas]"
+                      dataType="nText"
+                      name="caracteristicas" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargarDatos\Get Datos Autobus"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Datos Autobus"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXECUTE [dbo].[GetAutobusChangesByRowVersion]    @startRow=?   ,@endRow=?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@startRow:Input",{F6BF5016-1B92-4459-9535-8ED9B3AC5424};"@endRow:Input",{D4030D85-79BD-418E-940E-60D9C45E635A};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\Get Datos Autobus.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[origen.ProyMaestriaOLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[origen.ProyMaestriaOLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[idAutobus]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[idAutobus]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[idAutobus]"
+                      name="idAutobus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[matricula]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[matricula]"
+                      length="20"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[matricula]"
+                      name="matricula"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[modelo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[modelo]"
+                      length="100"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[modelo]"
+                      name="modelo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[fabricante]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[fabricante]"
+                      length="100"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[fabricante]"
+                      name="fabricante"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[numeroPlazas]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[numeroPlazas]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[numeroPlazas]"
+                      name="numeroPlazas"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[caracteristicas]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[caracteristicas]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[caracteristicas]"
+                      name="caracteristicas"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[idAutobus]"
+                      dataType="i4"
+                      name="idAutobus" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[matricula]"
+                      dataType="wstr"
+                      length="20"
+                      name="matricula" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[modelo]"
+                      dataType="wstr"
+                      length="100"
+                      name="modelo" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[fabricante]"
+                      dataType="wstr"
+                      length="100"
+                      name="fabricante" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[numeroPlazas]"
+                      dataType="i4"
+                      name="numeroPlazas" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].ExternalColumns[caracteristicas]"
+                      dataType="nText"
+                      name="caracteristicas" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[idAutobus]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[idAutobus]"
+                      name="idAutobus" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[matricula]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[matricula]"
+                      name="matricula" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[modelo]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[modelo]"
+                      name="modelo" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[fabricante]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[fabricante]"
+                      name="fabricante" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[numeroPlazas]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[numeroPlazas]"
+                      name="numeroPlazas" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[caracteristicas]"
+                      dataType="nText"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[caracteristicas]"
+                      name="caracteristicas" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargarDatos\load staging"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="load staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[Autobus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\load staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[matricula]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="matricula"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[matricula]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[matricula]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[modelo]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="modelo"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[modelo]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[modelo]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[fabricante]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="fabricante"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[fabricante]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[fabricante]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[numeroPlazas]"
+                      cachedDataType="i4"
+                      cachedName="numeroPlazas"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[numeroPlazas]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[numeroPlazas]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[caracteristicas]"
+                      cachedDataType="nText"
+                      cachedName="caracteristicas"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[caracteristicas]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[caracteristicas]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[idAutobusSk]"
+                      cachedDataType="i4"
+                      cachedName="idAutobusSk"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusSk]"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output].Columns[idAutobusSk]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[idAutobus]"
+                      cachedDataType="i4"
+                      cachedName="idAutobus"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusHistorico]"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[idAutobus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusSk]"
+                      dataType="i4"
+                      name="idAutobusSk" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idAutobusHistorico]"
+                      dataType="i4"
+                      name="idAutobusHistorico" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[matricula]"
+                      dataType="wstr"
+                      length="20"
+                      name="matricula" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[modelo]"
+                      dataType="wstr"
+                      length="100"
+                      name="modelo" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[fabricante]"
+                      dataType="wstr"
+                      length="100"
+                      name="fabricante" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[numeroPlazas]"
+                      dataType="i4"
+                      name="numeroPlazas" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[caracteristicas]"
+                      dataType="nText"
+                      name="caracteristicas" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargarDatos\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAutobus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAutobus]) [refTable]
+where [refTable].[idAutobusHistorico] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idAutobusSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idAutobusHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="matricula" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="modelo" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="fabricante" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="numeroPlazas" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="caracteristicas" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[idAutobus]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargarDatos\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargarDatos\Lookup.Inputs[Lookup Input].Columns[idAutobus]"
+                      cachedDataType="i4"
+                      cachedName="idAutobus"
+                      lineageId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output].Columns[idAutobus]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">idAutobusHistorico</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\CargarDatos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output].Columns[idAutobusSk]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output].Columns[idAutobusSk]"
+                      name="idAutobusSk"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">idAutobusSk</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CargarDatos\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\CargarDatos\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\CargarDatos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CargarDatos.Paths[Lookup Match Output]"
+              endId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\CargarDatos.Paths[Lookup No Match Output]"
+              endId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\CargarDatos\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\CargarDatos.Paths[OLE DB Source Output]"
+              endId="Package\CargarDatos\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\CargarDatos\Get Datos Autobus.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{D4AEFD46-2187-491A-9E30-FA4216EC27F8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42601EA5-B581-4EA2-82C6-6D7F1B87C5C3}"
+          SQLTask:SqlStatementSource="truncate table [staging].[Autobus]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Database row version"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{245A9596-3A8D-40DF-9F45-5E9143E5B80C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Database row version"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8CD05F21-0EAB-475B-83D7-74311076968E}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetDatabaseRowVersion]"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LastRowVersionDimAutobus"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{6BB1FD74-31A6-4767-A548-17E609918556}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LastRowVersionDimAutobus"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42601EA5-B581-4EA2-82C6-6D7F1B87C5C3}"
+          SQLTask:SqlStatementSource="exec [dbo].[GetLastPackageRowVersion] @tableName='Autobus'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRowVersion"
+            SQLTask:DtsVariableName="User::lastRowVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\update config"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{6B9FCCE4-8C44-4BC8-8E33-7FE5EB357E32}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="update config"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42601EA5-B581-4EA2-82C6-6D7F1B87C5C3}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[UpdateLastPackageRowVersion]    @tableName='autobus'  ,@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dbts"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD4FE314-D9E9-44D1-A007-9A7250024ED0}"
+      DTS:From="Package\Get Database row version"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Get LastRowVersionDimAutobus" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AAD90BA7-51C7-47EC-B701-E913B9CF4362}"
+      DTS:From="Package\Get LastRowVersionDimAutobus"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Clean staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{027D8FFE-01B5-4A59-8A70-8B69B1D8D889}"
+      DTS:From="Package\Clean staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\CargarDatos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{83151A10-8A70-4DFE-B992-849F6E215810}"
+      DTS:From="Package\CargarDatos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Actualizar staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{99C5877D-F842-43CB-BA30-A499256D92DD}"
+      DTS:From="Package\Actualizar staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\update config" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Get Database row version"
+          TopLeft="119.166660155687,42.4666663713588" />
+        <NodeLayout
+          Size="230.4,41.6"
+          Id="Package\Get LastRowVersionDimAutobus"
+          TopLeft="114.999993716677,118.733332507677" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="218.366660155687,84.0666663713588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.83333356099,34.6666661363178"
+              Start="0,0"
+              End="11.83333356099,27.1666661363178">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3333330681589" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3333330681589"
+                    Point2="0,17.3333330681589"
+                    Point3="4,17.3333330681589" />
+                  <mssgle:LineSegment
+                    End="7.83333356098996,17.3333330681589" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.83333356098996,17.3333330681589"
+                    Point2="11.83333356099,17.3333330681589"
+                    Point3="11.83333356099,21.3333330681589" />
+                  <mssgle:LineSegment
+                    End="11.83333356099,27.1666661363178" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Clean staging"
+          TopLeft="156.666658106778,203.933332037595" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="228.833325911728,160.333332507677">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.599999529918"
+              Start="0,0"
+              End="0,36.099999529918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.099999529918" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\CargarDatos"
+          TopLeft="429.999976505837,225.933332001435" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="298.266658106778,224.733332037595">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.733318399059,21.9999999638399"
+              Start="0,0"
+              End="124.233318399059,21.9999999638399">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.8666591995296,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.8666591995296,0"
+                    Point2="65.8666591995296,0"
+                    Point3="65.8666591995296,4" />
+                  <mssgle:LineSegment
+                    End="65.8666591995296,17.9999999638399" />
+                  <mssgle:CubicBezierSegment
+                    Point1="65.8666591995296,17.9999999638399"
+                    Point2="65.8666591995296,21.9999999638399"
+                    Point3="69.8666591995296,21.9999999638399" />
+                  <mssgle:LineSegment
+                    End="124.233318399059,21.9999999638399" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\update config"
+          TopLeft="146.666658653154,374.399997396469" />
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\Actualizar staging"
+          TopLeft="144.99999207755,307.666664527191" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="498.799976505837,267.533332001435">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-273.399984428287,40.1333325257566"
+              Start="0,0"
+              End="-273.399984428287,32.6333325257566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.0666662628783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.0666662628783"
+                    Point2="0,20.0666662628783"
+                    Point3="-4,20.0666662628783" />
+                  <mssgle:LineSegment
+                    End="-269.399984428287,20.0666662628783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-269.399984428287,20.0666662628783"
+                    Point2="-273.399984428287,20.0666662628783"
+                    Point3="-273.399984428287,24.0666662628783" />
+                  <mssgle:LineSegment
+                    End="-273.399984428287,32.6333325257566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="225.39999207755,349.266664527191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.33333342439602,25.133332869278"
+              Start="0,0"
+              End="-8.33333342439602,17.633332869278">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.56666643463899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.56666643463899"
+                    Point2="0,12.566666434639"
+                    Point3="-4,12.566666434639" />
+                  <mssgle:LineSegment
+                    End="-4.33333342439602,12.566666434639" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.33333342439602,12.566666434639"
+                    Point2="-8.33333342439602,12.566666434639"
+                    Point3="-8.33333342439602,16.566666434639" />
+                  <mssgle:LineSegment
+                    End="-8.33333342439602,17.633332869278" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CargarDatos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\CargarDatos\Get Datos Autobus"
+          TopLeft="368.333313208488,76.2666661363178" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\CargarDatos\Lookup"
+          TopLeft="371.666646359696,162.933332200315" />
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[OLE DB Source Output]"
+          TopLeft="451.533313208488,117.866666136318">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.4666668487921,45.0666660639975"
+              Start="0,0"
+              End="-23.4666668487921,37.5666660639975">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5333330319988" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5333330319988"
+                    Point2="0,22.5333330319988"
+                    Point3="-4,22.5333330319988" />
+                  <mssgle:LineSegment
+                    End="-19.4666668487921,22.5333330319988" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.4666668487921,22.5333330319988"
+                    Point2="-23.4666668487921,22.5333330319988"
+                    Point3="-23.4666668487921,26.5333330319988" />
+                  <mssgle:LineSegment
+                    End="-23.4666668487921,37.5666660639975" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="134.4,41.6"
+          Id="Package\CargarDatos\load staging"
+          TopLeft="187.499989755452,293.799997956951" />
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup Match Output]"
+          TopLeft="428.066646359696,204.533332200315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-173.366656604244,89.2666657566362"
+              Start="0,0"
+              End="-173.366656604244,81.7666657566362">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.6333328783181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.6333328783181"
+                    Point2="0,44.6333328783181"
+                    Point3="-4,44.6333328783181" />
+                  <mssgle:LineSegment
+                    End="-169.366656604244,44.6333328783181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-169.366656604244,44.6333328783181"
+                    Point2="-173.366656604244,44.6333328783181"
+                    Point3="-173.366656604244,48.6333328783181" />
+                  <mssgle:LineSegment
+                    End="-173.366656604244,81.7666657566362" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-134.874715020872,49.6333328783181,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="127.2,41.6"
+          Id="Package\CargarDatos\cargar dim"
+          TopLeft="469.166641032531,289.466664653752" />
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup No Match Output]"
+          TopLeft="445.533313026363,204.533332200315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.2333280061685,84.9333324534364"
+              Start="0,0"
+              End="87.2333280061685,77.4333324534364">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.6860602467181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.6860602467181"
+                    Point2="0,34.6860602467181"
+                    Point3="4,34.6860602467181" />
+                  <mssgle:LineSegment
+                    End="83.2333280061685,34.6860602467181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.2333280061685,34.6860602467181"
+                    Point2="87.2333280061685,34.6860602467181"
+                    Point3="87.2333280061685,38.6860602467181" />
+                  <mssgle:LineSegment
+                    End="87.2333280061685,77.4333324534364" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-12.1897227156657,39.6860602467181,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Get Datos Autobus">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimAutobus]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\load staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\cargar dim">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,3 +1,4 @@
+
 :r .\clean.data.sql
 :r .\Turista.data.sql
 :r .\Ruta.data.sql
