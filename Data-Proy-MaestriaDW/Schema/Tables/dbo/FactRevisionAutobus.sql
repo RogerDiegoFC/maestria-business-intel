@@ -21,5 +21,5 @@ ALTER TABLE [FactRevisionAutobus] ADD CONSTRAINT [DimAutobus_FactRevisionAutobus
 GO
 
 ALTER TABLE [FactRevisionAutobus] ADD CONSTRAINT [DimTiempo_FactRevisionAutobus] 
-    FOREIGN KEY ([idRevisionFechaRevisionSk]) REFERENCES [DimTiempo] ([idTiempoSk])
+    FOREIGN KEY ([idRevisionFechaRevision]) REFERENCES [DimTiempo] (fechaId)
 GO

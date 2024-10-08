@@ -58,9 +58,9 @@ ALTER TABLE [FactServicioViaje] ADD CONSTRAINT [DimBoleto_FactServicioViaje]
 GO
 
 ALTER TABLE [FactServicioViaje] ADD CONSTRAINT [%parentxx%_FactServicioViaje] 
-    FOREIGN KEY ([idViajeFechaViajeSk]) REFERENCES [DimTiempo] ([idTiempoSk])
+    FOREIGN KEY ([idViajeFechaViaje]) REFERENCES [DimTiempo] (fechaId)
 GO
 
 ALTER TABLE [FactServicioViaje] ADD CONSTRAINT [DimTiempo_FactServicioViaje] 
-    FOREIGN KEY ([idCompraFechaCompraSk]) REFERENCES [DimTiempo] ([idTiempoSk])
+    FOREIGN KEY ([idCompraFechaCompra]) REFERENCES [DimTiempo] (fechaId)
 GO
