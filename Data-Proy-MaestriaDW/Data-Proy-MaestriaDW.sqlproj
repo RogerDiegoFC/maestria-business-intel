@@ -57,15 +57,42 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Schema" />
+    <Folder Include="Schema\Security" />
+    <Folder Include="Schema\Security\schemas" />
+    <Folder Include="Schema\Programmability" />
+    <Folder Include="Schema\Programmability\Stored Procedures" />
+    <Folder Include="Schema\Tables" />
+    <Folder Include="Schema\Tables\dbo" />
+    <Folder Include="Schema\Tables\staging" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Schema\DimRutaLugar.sql" />
-    <Build Include="Schema\DimTurista.sql" />
-    <Build Include="Schema\DimConductor.sql" />
-    <Build Include="Schema\DimBoleto.sql" />
-    <Build Include="Schema\DimAutobus.sql" />
-    <Build Include="Schema\DimTiempo.sql" />
-    <Build Include="Schema\FactServicioViaje.sql" />
-    <Build Include="Schema\FactRevisionAutobus.sql" />
+    <Build Include="Schema\Security\schemas\staging.sql" />
+    <Build Include="Schema\Tables\dbo\DimAutobus.sql" />
+    <Build Include="Schema\Tables\dbo\DimBoleto.sql" />
+    <Build Include="Schema\Tables\dbo\DimConductor.sql" />
+    <Build Include="Schema\Tables\dbo\DimRutaLugar.sql" />
+    <Build Include="Schema\Tables\dbo\PackageConfig.sql" />
+    <Build Include="Schema\Tables\dbo\DimTiempo.sql" />
+    <Build Include="Schema\Tables\dbo\DimTurista.sql" />
+    <Build Include="Schema\Tables\dbo\FactRevisionAutobus.sql" />
+    <Build Include="Schema\Tables\dbo\FactServicioViaje.sql" />
+    <Build Include="Schema\Tables\staging\staging.Autobus.sql" />
+    <Build Include="Schema\Tables\staging\staging.Boleto.sql" />
+    <Build Include="Schema\Tables\staging\staging.Conductor.sql" />
+    <Build Include="Schema\Tables\staging\staging.RevisionAutobus.sql" />
+    <Build Include="Schema\Tables\staging\staging.RutaLugar.sql" />
+    <Build Include="Schema\Tables\staging\staging.ServicioViaje.sql" />
+    <Build Include="Schema\Tables\staging\staging.Tiempo.sql" />
+    <Build Include="Schema\Tables\staging\staging.Turista.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetLastPackageRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\UpdateLastPackageRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimAutobus.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimBoleto.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimConductor.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimRutaLugar.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimTiempo.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimTurista.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeFactRevisionAutobus.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeFactServicioViaje.sql" />
   </ItemGroup>
 </Project>
