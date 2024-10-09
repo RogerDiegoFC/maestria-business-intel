@@ -3,6 +3,7 @@ AS
 BEGIN
     UPDATE dc
     SET [idConductorHistorico] = sc.[idConductorHistorico],
+         [dni] = sc.dni,
         [nombreCompleto]       = sc.[nombreCompleto],
         [telefono]             = sc.[telefono],
         [direccion]            = sc.[direccion]

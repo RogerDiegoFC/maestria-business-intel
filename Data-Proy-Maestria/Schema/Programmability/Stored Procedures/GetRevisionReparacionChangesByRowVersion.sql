@@ -19,11 +19,12 @@ BEGIN
 							END))
       ,r.[diagnostico]
       ,r.[costoRevision]
-	  ,rep.[idReparacion]
-      ,rep.[codigoReparacion]
-      ,rep.[tiempoEmpleado]
-      ,rep.[comentarioReparacion]
-      ,rep.[costoReparacion]      
+	  ,ISNULL(rep.[idReparacion],0) as [idReparacion]
+      ,ISNULL(rep.[codigoReparacion],'') as [codigoReparacion]
+      ,ISNULL(rep.[tiempoEmpleado],0) as [tiempoEmpleado]
+      ,ISNULL(rep.[comentarioReparacion],'') as [comentarioReparacion]
+      ,ISNULL(rep.[costoReparacion],0) as [costoReparacion]
+	  ,CASE WHEN rep.[idReparacion] IS NULL  THEN 0 ELSE 1 END existeReparacion 
   FROM [dbo].[Revision] r 
   inner join 
   Reparacion rep on r.idRevision= rep.idRevision

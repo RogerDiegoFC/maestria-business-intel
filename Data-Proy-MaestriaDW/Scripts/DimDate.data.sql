@@ -3,7 +3,7 @@
  BEGIN
 	BEGIN TRAN 
 		DECLARE @startdate DATE = '2024-01-01',
-				@enddate   DATE = '2024-10-31';
+				@enddate   DATE = '2024-12-31';
 		DECLARE @datelist TABLE(FullDate DATE);
 
 	IF @startdate IS NULL

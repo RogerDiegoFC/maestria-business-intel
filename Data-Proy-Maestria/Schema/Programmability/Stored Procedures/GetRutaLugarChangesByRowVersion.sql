@@ -16,7 +16,7 @@ BEGIN
       ,l.[tiempoParadaHoras]
   FROM [dbo].[Ruta] r 
   inner join dbo.Lugar l 
-  on r.idRuta= l.idLugar
+  on r.idRuta= l.idRuta
   WHERE (r.[rowversion] > CONVERT(ROWVERSION,@startRow) 
 		   AND r.[rowversion] <= CONVERT(ROWVERSION,@endRow))
 	OR (l.[rowversion] > CONVERT(ROWVERSION,@startRow) 

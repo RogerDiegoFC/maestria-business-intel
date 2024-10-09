@@ -4,3 +4,7 @@ C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\bin\Debu
 C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Data-Proy-MaestriaOLTP.sqlproj.AssemblyReference.cache
 C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Data_Proy_Maestria.dll
 C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Data_Proy_Maestria.pdb
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\Model.xml
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\refactor.xml
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\postdeploy.sql
+C:\PERSONAL\ESTUDIO\PROYECTO\maestria-business-intel\Data-Proy-Maestria\obj\Debug\predeploy.sql
