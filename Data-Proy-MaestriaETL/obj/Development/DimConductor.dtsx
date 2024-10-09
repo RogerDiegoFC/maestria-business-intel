@@ -1,0 +1,1289 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/5/2024 1:37:41 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAP_ROG_ESP"
+  DTS:CreatorName="LAP_ROG_ESP\night"
+  DTS:DTSID="{27A724FA-070D-4367-B084-CC0A7C0A7A52}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="DimConductor"
+  DTS:PackageType="5"
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{B5036A05-157D-455F-BBE7-E8E8E15D0C27}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{11827645-EEEA-408E-9E99-05A27B84572A}"
+      DTS:ObjectName="destino.ProyMaestriaDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAP_ROG_ESP;Initial Catalog=ProyMaestriaDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{11827645-EEEA-408E-9E99-05A27B84572A}LAP_ROG_ESP.ProyMaestriaDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[origen.ProyMaestriaOLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DFA1CF1B-9B62-4760-AE28-7E0D55E789CD}"
+      DTS:ObjectName="origen.ProyMaestriaOLTP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAP_ROG_ESP;Initial Catalog=ProyMaestriaOLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{DFA1CF1B-9B62-4760-AE28-7E0D55E789CD}LAP_ROG_ESP.ProyMaestriaOLTP;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{277C116C-F045-4382-AFE0-86BCB3AE8E78}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dbts">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{37377366-CDDF-424F-8CF6-060FD89D8681}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="lastRowVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Actualizar staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{AFFADDF5-3D42-4167-A489-4BA5C64CC03B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Actualizar staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{11827645-EEEA-408E-9E99-05A27B84572A}"
+          SQLTask:SqlStatementSource="EXECUTE  [dbo].[DW_MergeDimConductor] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CargarDatos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D06FD384-E09D-4A42-9722-0CD77CF1D091}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CargarDatos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CargarDatos\cargar dim"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="cargar dim"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimConductor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\cargar dim.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[nombreCompleto]"
+                      cachedDataType="wstr"
+                      cachedLength="300"
+                      cachedName="nombreCompleto"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[nombreCompleto]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[telefono]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="telefono"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[telefono]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[telefono]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[direccion]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="direccion"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[direccion]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[direccion]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[idConductor]"
+                      cachedDataType="i4"
+                      cachedName="idConductor"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idConductorHistorico]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[idConductor]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[dni]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="dni"
+                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[dni]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[dni]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idConductorSk]"
+                      dataType="i4"
+                      name="idConductorSk" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idConductorHistorico]"
+                      dataType="i4"
+                      name="idConductorHistorico" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
+                      dataType="wstr"
+                      length="300"
+                      name="nombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[telefono]"
+                      dataType="wstr"
+                      length="20"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[direccion]"
+                      dataType="wstr"
+                      length="500"
+                      name="direccion" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[dni]"
+                      dataType="wstr"
+                      length="20"
+                      name="dni" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\cargar dim.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargarDatos\Get Datos Boleto"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Datos Boleto"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXECUTE [dbo].[GetConductorChangesByRowVersion]    @startRow=?   ,@endRow=?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@startRow:Input",{37377366-CDDF-424F-8CF6-060FD89D8681};"@endRow:Input",{277C116C-F045-4382-AFE0-86BCB3AE8E78};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\Get Datos Boleto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[origen.ProyMaestriaOLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[origen.ProyMaestriaOLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[idConductor]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[idConductor]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[idConductor]"
+                      name="idConductor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[dni]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[dni]"
+                      length="20"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[dni]"
+                      name="dni"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[nombreCompleto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[nombreCompleto]"
+                      length="300"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[nombreCompleto]"
+                      name="nombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[telefono]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[telefono]"
+                      length="20"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[telefono]"
+                      name="telefono"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[direccion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[direccion]"
+                      length="500"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[direccion]"
+                      name="direccion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[idConductor]"
+                      dataType="i4"
+                      name="idConductor" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[dni]"
+                      dataType="wstr"
+                      length="20"
+                      name="dni" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[nombreCompleto]"
+                      dataType="wstr"
+                      length="300"
+                      name="nombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[telefono]"
+                      dataType="wstr"
+                      length="20"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].ExternalColumns[direccion]"
+                      dataType="wstr"
+                      length="500"
+                      name="direccion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[idConductor]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[idConductor]"
+                      name="idConductor" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[dni]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[dni]"
+                      name="dni" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[nombreCompleto]"
+                      dataType="wstr"
+                      length="300"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[nombreCompleto]"
+                      name="nombreCompleto" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[telefono]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[telefono]"
+                      name="telefono" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[direccion]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[direccion]"
+                      name="direccion" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargarDatos\load staging"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="load staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[Conductor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\load staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[nombreCompleto]"
+                      cachedDataType="wstr"
+                      cachedLength="300"
+                      cachedName="nombreCompleto"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[nombreCompleto]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[telefono]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="telefono"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[telefono]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[telefono]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[direccion]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="direccion"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[direccion]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[direccion]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[idConductorSk]"
+                      cachedDataType="i4"
+                      cachedName="idConductorSk"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idConductorSk]"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output].Columns[idConductorSk]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[idConductor]"
+                      cachedDataType="i4"
+                      cachedName="idConductor"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idConductorHistorico]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[idConductor]" />
+                    <inputColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[dni]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="dni"
+                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[dni]"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[dni]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idConductorSk]"
+                      dataType="i4"
+                      name="idConductorSk" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idConductorHistorico]"
+                      dataType="i4"
+                      name="idConductorHistorico" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
+                      dataType="wstr"
+                      length="300"
+                      name="nombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[telefono]"
+                      dataType="wstr"
+                      length="20"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[direccion]"
+                      dataType="wstr"
+                      length="500"
+                      name="direccion" />
+                    <externalMetadataColumn
+                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[dni]"
+                      dataType="wstr"
+                      length="20"
+                      name="dni" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\load staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargarDatos\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimConductor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimConductor]) [refTable]
+where [refTable].[idConductorHistorico] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idConductorSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idConductorHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombreCompleto" dataType="DT_WSTR" length="300" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="telefono" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="direccion" dataType="DT_WSTR" length="500" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[idConductor]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargarDatos\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[destino.ProyMaestriaDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargarDatos\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargarDatos\Lookup.Inputs[Lookup Input].Columns[idConductor]"
+                      cachedDataType="i4"
+                      cachedName="idConductor"
+                      lineageId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output].Columns[idConductor]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">idConductorHistorico</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\CargarDatos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output].Columns[idConductorSk]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output].Columns[idConductorSk]"
+                      name="idConductorSk"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">idConductorSk</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CargarDatos\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\CargarDatos\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\CargarDatos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargarDatos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CargarDatos.Paths[Lookup Match Output]"
+              endId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\CargarDatos\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\CargarDatos.Paths[Lookup No Match Output]"
+              endId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\CargarDatos\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\CargarDatos.Paths[OLE DB Source Output]"
+              endId="Package\CargarDatos\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\CargarDatos\Get Datos Boleto.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{CD3EF576-4EDF-4EDA-8580-8009557287B9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{11827645-EEEA-408E-9E99-05A27B84572A}"
+          SQLTask:SqlStatementSource="truncate table [staging].[Conductor]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Database row version"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{D26E57DF-1F6C-495D-9093-383C460D5A86}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Database row version"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DFA1CF1B-9B62-4760-AE28-7E0D55E789CD}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetDatabaseRowVersion]"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LastRowVersionDimBoleto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{DFC47FD7-7BC6-48F8-9247-30917C6A33B5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LastRowVersionDimBoleto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{11827645-EEEA-408E-9E99-05A27B84572A}"
+          SQLTask:SqlStatementSource="exec [dbo].[GetLastPackageRowVersion] @tableName='Conductor'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRowVersion"
+            SQLTask:DtsVariableName="User::lastRowVersion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\update config"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{19CAA5D1-3731-4F67-85B0-1E56CE2F0648}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="update config"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{11827645-EEEA-408E-9E99-05A27B84572A}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[UpdateLastPackageRowVersion]    @tableName='Conductor'  ,@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::dbts"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{809431EB-1405-4010-B543-9C8D0D5D2FED}"
+      DTS:From="Package\Get Database row version"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Get LastRowVersionDimBoleto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5ACE4219-9D7A-45AD-B586-2A9D3B4ACBB1}"
+      DTS:From="Package\Get LastRowVersionDimBoleto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Clean staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{706DB010-4312-4E7D-8791-E24F2240B9B0}"
+      DTS:From="Package\Clean staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\CargarDatos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{28209E76-593B-469D-8EBC-62EE491E4C78}"
+      DTS:From="Package\CargarDatos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Actualizar staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{87C64154-57F1-43BE-8A08-DC56E605BC7F}"
+      DTS:From="Package\Actualizar staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\update config" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\Actualizar staging"
+          TopLeft="144.99999207755,307.666664527191" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\CargarDatos"
+          TopLeft="429.999976505837,225.933332001435" />
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Clean staging"
+          TopLeft="156.666658106778,203.933332037595" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Get Database row version"
+          TopLeft="119.166660155687,42.4666663713588" />
+        <NodeLayout
+          Size="221.6,41.6"
+          Id="Package\Get LastRowVersionDimBoleto"
+          TopLeft="114.999993716677,118.733332507677" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\update config"
+          TopLeft="146.666658653154,374.399997396469" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="222.083326936182,84.0666663713588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.6666661363182"
+              Start="0,0"
+              End="0,27.1666661363182">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1666661363182" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="226.633325911727,160.333332507677">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.599999529918"
+              Start="0,0"
+              End="0,36.099999529918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.099999529918" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="298.266658106778,224.733332037595">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.733318399059,21.9999999638399"
+              Start="0,0"
+              End="124.233318399059,21.9999999638399">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.8666591995296,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.8666591995296,0"
+                    Point2="65.8666591995296,0"
+                    Point3="65.8666591995296,4" />
+                  <mssgle:LineSegment
+                    End="65.8666591995296,17.9999999638399" />
+                  <mssgle:CubicBezierSegment
+                    Point1="65.8666591995296,17.9999999638399"
+                    Point2="65.8666591995296,21.9999999638399"
+                    Point3="69.8666591995296,21.9999999638399" />
+                  <mssgle:LineSegment
+                    End="124.233318399059,21.9999999638399" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="498.799976505837,267.533332001435">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-273.399984428287,40.1333325257566"
+              Start="0,0"
+              End="-273.399984428287,32.6333325257566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.0666662628783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.0666662628783"
+                    Point2="0,20.0666662628783"
+                    Point3="-4,20.0666662628783" />
+                  <mssgle:LineSegment
+                    End="-269.399984428287,20.0666662628783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-269.399984428287,20.0666662628783"
+                    Point2="-273.399984428287,20.0666662628783"
+                    Point3="-273.399984428287,24.0666662628783" />
+                  <mssgle:LineSegment
+                    End="-273.399984428287,32.6333325257566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="225.39999207755,349.266664527191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.33333342439602,25.133332869278"
+              Start="0,0"
+              End="-8.33333342439602,17.633332869278">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.56666643463899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.56666643463899"
+                    Point2="0,12.566666434639"
+                    Point3="-4,12.566666434639" />
+                  <mssgle:LineSegment
+                    End="-4.33333342439602,12.566666434639" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.33333342439602,12.566666434639"
+                    Point2="-8.33333342439602,12.566666434639"
+                    Point3="-8.33333342439602,16.566666434639" />
+                  <mssgle:LineSegment
+                    End="-8.33333342439602,17.633332869278" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CargarDatos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\CargarDatos\Get Datos Boleto"
+          TopLeft="368.333313208488,76.2666661363178" />
+        <NodeLayout
+          Size="134.4,41.6"
+          Id="Package\CargarDatos\load staging"
+          TopLeft="187.499989755452,293.799997956951" />
+        <NodeLayout
+          Size="127.2,41.6"
+          Id="Package\CargarDatos\cargar dim"
+          TopLeft="469.166641032531,289.466664653752" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\CargarDatos\Lookup"
+          TopLeft="386.666645540132,172.466665467355" />
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[OLE DB Source Output]"
+          TopLeft="445.09997937431,117.866666136318">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5999993310371"
+              Start="0,0"
+              End="0,47.0999993310371">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.0999993310371" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup Match Output]"
+          TopLeft="443.066645540132,214.066665467355">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-188.36665578468,79.7333324895961"
+              Start="0,0"
+              End="-188.36665578468,72.2333324895961">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.866666244798" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.866666244798"
+                    Point2="0,39.866666244798"
+                    Point3="-4,39.866666244798" />
+                  <mssgle:LineSegment
+                    End="-184.36665578468,39.866666244798" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-184.36665578468,39.866666244798"
+                    Point2="-188.36665578468,39.866666244798"
+                    Point3="-188.36665578468,43.866666244798" />
+                  <mssgle:LineSegment
+                    End="-188.36665578468,72.2333324895961" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-142.37471461109,44.866666244798,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup No Match Output]"
+          TopLeft="460.533312206799,214.066665467355">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.2333288257319,75.3999991863971"
+              Start="0,0"
+              End="72.2333288257319,67.8999991863971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.7927269404586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.7927269404586"
+                    Point2="0,30.7927269404586"
+                    Point3="4,30.7927269404586" />
+                  <mssgle:LineSegment
+                    End="68.2333288257319,30.7927269404586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="68.2333288257319,30.7927269404586"
+                    Point2="72.2333288257319,30.7927269404586"
+                    Point3="72.2333288257319,34.7927269404586" />
+                  <mssgle:LineSegment
+                    End="72.2333288257319,67.8999991863971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.6897223058841,35.7927269404586,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Get Datos Boleto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\load staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\cargar dim">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimConductor]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
