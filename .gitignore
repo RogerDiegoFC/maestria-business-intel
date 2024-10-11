@@ -4,3 +4,46 @@
 *.txt
 *publish.sql
 *.jfm
+# Build Folders
+bin/
+obj/
+Debug/
+Release/
+
+# User-specific files
+.vscode/
+.vs/
+.vscode/*
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Model.bim.metadata is generated automatically
+*.bim.metadata
+
+# Temp data files created by Analysis Services during processing
+*.asdatabase
+*.settings
+*.data
+*.deploymenttargets
+*.deploymentoptions
+
+# Backup files
+*.bak
+*.rdl.data
+*.rdl.cache
+
+# Tabular model cache folder (you can also ignore this folder if you don't want local cache files)
+.metadata/
+
+# Config files containing local or environment-specific settings
+*.config
+*.local.settings.json
+
+# NuGet packages
+packages/
+
+# Deployment files
+*.publishsettings
+*.publish.xml
