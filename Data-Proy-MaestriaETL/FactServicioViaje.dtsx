@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="FactServicioViaje"
   DTS:PackageType="5"
-  DTS:VersionBuild="77"
-  DTS:VersionGUID="{72089225-682E-497C-93F0-7D52A85B1449}">
+  DTS:VersionBuild="78"
+  DTS:VersionGUID="{F367EB42-5C6A-487C-9EFE-AAB3EB637EF4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2649,7 +2649,7 @@ where [refTable].[idConductorHistorico] = ?</property>
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimRutaLugar]) [refTable]
-where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</property>
+where [refTable].[idRutaHistorico] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -2680,12 +2680,12 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idRutaLugarSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idRutaHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idLugarHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaNombre" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaDuracionAproximadaHoras" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaEsMasAtractiva" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaKilometrosRecorrido" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="lugarNombre" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="lugarHoraPrevistaLlegada" dataType="DT_DBTIME2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="lugarActividad" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="lugarTiempoParadaHoras" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idRutaLugarSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idRutaHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaNombre" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaDuracionAproximadaHoras" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaEsMasAtractiva" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaKilometrosRecorrido" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\CargarDatos\Get Datos Servicio.Outputs[OLE DB Source Output].Columns[idRuta]};#{Package\CargarDatos\Get Datos Servicio.Outputs[OLE DB Source Output].Columns[idLugar]};</property>
+                  name="ParameterMap">#{Package\CargarDatos\Get Datos Servicio.Outputs[OLE DB Source Output].Columns[idRuta]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2718,22 +2718,6 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">idRutaHistorico</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\CargarDatos\Lookup Ruta Lugar.Inputs[Lookup Input].Columns[idLugar]"
-                      cachedDataType="i4"
-                      cachedName="idLugar"
-                      lineageId="Package\CargarDatos\Get Datos Servicio.Outputs[OLE DB Source Output].Columns[idLugar]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">idLugarHistorico</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -3546,204 +3530,74 @@ where [refTable].[idTuristaHistorico] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="134.4,41.6"
-          Id="Package\CargarDatos\load staging"
-          TopLeft="389.166645403538,309.399997848471" />
+          Size="160,41.6"
+          Id="Package\CargarDatos\Get Datos Servicio"
+          TopLeft="100.833327824043,72.7999994937579" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\CargarDatos\Lookup Autobus"
+          TopLeft="106.666660838657,367.86666429215" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\CargarDatos\Lookup Conductor"
+          TopLeft="104.999994263053,221.133332001434" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\CargarDatos\Lookup Servicio"
+          TopLeft="452.499975276491,146.266665955517" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\CargarDatos\Lookup Turista"
+          TopLeft="110.833327277667,293.333331477112" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\CargarDatos\Lookup Boleto"
+          TopLeft="385.83331225233,76.933333104319" />
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\CargarDatos\Lookup Ruta Lugar"
+          TopLeft="103.333327687449,143.999999204476" />
         <NodeLayout
           Size="127.2,41.6"
           Id="Package\CargarDatos\cargar dim"
           TopLeft="575.833301871188,309.399997848471" />
         <NodeLayout
-          Size="160,41.6"
-          Id="Package\CargarDatos\Get Datos Servicio"
-          TopLeft="100.833327824043,72.7999994937579" />
-        <NodeLayout
-          Size="166.4,41.6"
-          Id="Package\CargarDatos\Lookup Ruta Lugar"
-          TopLeft="103.333327687449,143.999999204476" />
+          Size="134.4,41.6"
+          Id="Package\CargarDatos\load staging"
+          TopLeft="389.166645403538,309.399997848471" />
         <EdgeLayout
-          Id="Package\CargarDatos.Paths[OLE DB Source Output]"
-          TopLeft="183.683327755746,114.399999493758">
+          Id="Package\CargarDatos.Paths[Lookup No Match Output]"
+          TopLeft="552.499975276491,187.866665955517">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,29.5999997107186"
+              EndConnector="86.933326594697,121.533331892955"
               Start="0,0"
-              End="0,22.0999997107186">
+              End="86.933326594697,114.033331892955">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.0999997107186" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="163.2,41.6"
-          Id="Package\CargarDatos\Lookup Conductor"
-          TopLeft="104.999994263053,221.133332001434" />
-        <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup Match Output]"
-          TopLeft="186.566660975251,185.599999204476">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35.5333327969579"
-              Start="0,0"
-              End="0,28.0333327969579">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.0333327969579" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,8.21197889847893,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="147.2,41.6"
-          Id="Package\CargarDatos\Lookup Turista"
-          TopLeft="110.833327277667,293.333331477112" />
-        <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup Match Output1]"
-          TopLeft="185.51666077036,262.733332001434">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,30.5999994756777"
-              Start="0,0"
-              End="0,23.0999994756777">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.0999994756777" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,5.74531223783887,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="153.6,41.6"
-          Id="Package\CargarDatos\Lookup Autobus"
-          TopLeft="106.666660838657,367.86666429215" />
-        <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup Match Output2]"
-          TopLeft="183.949994058162,334.933331477112">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.9333328150379"
-              Start="0,0"
-              End="0,25.4333328150379">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.4333328150379" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,6.91197890751897,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="144.8,41.6"
-          Id="Package\CargarDatos\Lookup Boleto"
-          TopLeft="385.83331225233,76.933333104319" />
-        <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup Match Output3]"
-          TopLeft="207.733327505324,367.86666429215">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="227.699984747007,-249.333331187831"
-              Start="0,0"
-              End="227.699984747007,-241.833331187831">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-120.570592136144" />
+                    End="0,45.3729160815128" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-120.570592136144"
-                    Point2="0,-124.570592136144"
-                    Point3="4,-124.570592136144" />
+                    Point1="0,45.3729160815128"
+                    Point2="0,49.3729160815128"
+                    Point3="4,49.3729160815128" />
                   <mssgle:LineSegment
-                    End="223.699984747007,-124.570592136144" />
+                    End="82.933326594697,49.3729160815128" />
                   <mssgle:CubicBezierSegment
-                    Point1="223.699984747007,-124.570592136144"
-                    Point2="227.699984747007,-124.570592136144"
-                    Point3="227.699984747007,-128.570592136144" />
+                    Point1="82.933326594697,49.3729160815128"
+                    Point2="86.933326594697,49.3729160815128"
+                    Point3="86.933326594697,53.3729160815128" />
                   <mssgle:LineSegment
-                    End="227.699984747007,-241.833331187831" />
+                    End="86.933326594697,114.033331892955" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="65.6586056547533,-119.570592136144,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152,41.6"
-          Id="Package\CargarDatos\Lookup Servicio"
-          TopLeft="452.499975276491,146.266665955517" />
-        <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup Match Output4]"
-          TopLeft="481.03331225233,118.533333104319">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="47.4666630241608,27.7333328511979"
-              Start="0,0"
-              End="47.4666630241608,20.2333328511979">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,7.27519106081489" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.27519106081489"
-                    Point2="0,11.2751910608149"
-                    Point3="4,11.2751910608149" />
-                  <mssgle:LineSegment
-                    End="43.4666630241608,11.2751910608149" />
-                  <mssgle:CubicBezierSegment
-                    Point1="43.4666630241608,11.2751910608149"
-                    Point2="47.4666630241608,11.2751910608149"
-                    Point3="47.4666630241608,15.2751910608149" />
-                  <mssgle:LineSegment
-                    End="47.4666630241608,20.2333328511979" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-24.4580552066696,16.2751910608149,96.3827734375,11.609375"
+              BoundingBox="-12.3397234214015,54.3729160815128,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3784,73 +3638,292 @@ where [refTable].[idTuristaHistorico] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup No Match Output]"
-          TopLeft="552.499975276491,187.866665955517">
+          Id="Package\CargarDatos.Paths[Lookup Match Output4]"
+          TopLeft="481.03331225233,118.533333104319">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="86.933326594697,121.533331892955"
+              EndConnector="47.4666630241608,27.7333328511979"
               Start="0,0"
-              End="86.933326594697,114.033331892955">
+              End="47.4666630241608,20.2333328511979">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.3729160815128" />
+                    End="0,7.27519106081489" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,45.3729160815128"
-                    Point2="0,49.3729160815128"
-                    Point3="4,49.3729160815128" />
+                    Point1="0,7.27519106081489"
+                    Point2="0,11.2751910608149"
+                    Point3="4,11.2751910608149" />
                   <mssgle:LineSegment
-                    End="82.933326594697,49.3729160815128" />
+                    End="43.4666630241608,11.2751910608149" />
                   <mssgle:CubicBezierSegment
-                    Point1="82.933326594697,49.3729160815128"
-                    Point2="86.933326594697,49.3729160815128"
-                    Point3="86.933326594697,53.3729160815128" />
+                    Point1="43.4666630241608,11.2751910608149"
+                    Point2="47.4666630241608,11.2751910608149"
+                    Point3="47.4666630241608,15.2751910608149" />
                   <mssgle:LineSegment
-                    End="86.933326594697,114.033331892955" />
+                    End="47.4666630241608,20.2333328511979" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-12.3397234214015,54.3729160815128,111.6127734375,11.609375"
+              BoundingBox="-24.4580552066696,16.2751910608149,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup Match Output3]"
+          TopLeft="207.733327505324,367.86666429215">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="227.699984747007,-249.333331187831"
+              Start="0,0"
+              End="227.699984747007,-241.833331187831">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-120.570592136144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-120.570592136144"
+                    Point2="0,-124.570592136144"
+                    Point3="4,-124.570592136144" />
+                  <mssgle:LineSegment
+                    End="223.699984747007,-124.570592136144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="223.699984747007,-124.570592136144"
+                    Point2="227.699984747007,-124.570592136144"
+                    Point3="227.699984747007,-128.570592136144" />
+                  <mssgle:LineSegment
+                    End="227.699984747007,-241.833331187831" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="65.6586056547533,-119.570592136144,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup Match Output2]"
+          TopLeft="183.949994058162,334.933331477112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.9333328150379"
+              Start="0,0"
+              End="0,25.4333328150379">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.4333328150379" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,6.91197890751897,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup Match Output1]"
+          TopLeft="185.51666077036,262.733332001434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5999994756777"
+              Start="0,0"
+              End="0,23.0999994756777">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0999994756777" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,5.74531223783887,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[Lookup Match Output]"
+          TopLeft="186.566660975251,185.599999204476">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5333327969579"
+              Start="0,0"
+              End="0,28.0333327969579">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0333327969579" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,8.21197889847893,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CargarDatos.Paths[OLE DB Source Output]"
+          TopLeft="183.683327755746,114.399999493758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.5999997107186"
+              Start="0,0"
+              End="0,22.0999997107186">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0999997107186" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\load staging">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\cargar dim">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\CargarDatos\Get Datos Servicio">
     <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup Autobus">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimAutobus]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup Conductor">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimConductor]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup Servicio">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactServicioViaje]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup Turista">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimTurista]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\Lookup Boleto">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimBoleto]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -3880,117 +3953,28 @@ where [refTable].[idTuristaHistorico] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\Lookup Conductor">
+    design-time-name="Package\CargarDatos\cargar dim">
     <Properties>
       <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimConductor]</Value>
+        <Name>DataSourceViewID</Name>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\Lookup Turista">
+    design-time-name="Package\CargarDatos\load staging">
     <Properties>
       <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimTurista]</Value>
+        <Name>DataSourceViewID</Name>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\Lookup Autobus">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimAutobus]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\Lookup Boleto">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimBoleto]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\Lookup Servicio">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[FactServicioViaje]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

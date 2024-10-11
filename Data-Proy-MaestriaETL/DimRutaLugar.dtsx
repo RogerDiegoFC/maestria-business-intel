@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="DimRutaLugar"
   DTS:PackageType="5"
-  DTS:VersionBuild="57"
-  DTS:VersionGUID="{7940AA3F-79CA-4E80-B0A3-EB5A666AA399}">
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{BA59E818-D384-4A52-A752-D55D2239325E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -198,38 +198,6 @@
                       cachedScale="2"
                       externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[rutaKilometrosRecorrido]"
                       lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[kilometrosRecorrido]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[idLugar]"
-                      cachedDataType="i4"
-                      cachedName="idLugar"
-                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idLugarHistorico]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idLugar]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[nombreLugar]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="nombreLugar"
-                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarNombre]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[nombreLugar]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[horaPrevistaLlegada]"
-                      cachedDataType="dbTime2"
-                      cachedName="horaPrevistaLlegada"
-                      cachedScale="7"
-                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarHoraPrevistaLlegada]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[horaPrevistaLlegada]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[actividad]"
-                      cachedDataType="nText"
-                      cachedName="actividad"
-                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarActividad]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[actividad]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].Columns[tiempoParadaHoras]"
-                      cachedDataType="i4"
-                      cachedName="tiempoParadaHoras"
-                      externalMetadataColumnId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarTiempoParadaHoras]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[tiempoParadaHoras]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -241,10 +209,6 @@
                       refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idRutaHistorico]"
                       dataType="i4"
                       name="idRutaHistorico" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[idLugarHistorico]"
-                      dataType="i4"
-                      name="idLugarHistorico" />
                     <externalMetadataColumn
                       refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[rutaNombre]"
                       dataType="wstr"
@@ -264,24 +228,6 @@
                       name="rutaKilometrosRecorrido"
                       precision="10"
                       scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarNombre]"
-                      dataType="wstr"
-                      length="100"
-                      name="lugarNombre" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarHoraPrevistaLlegada]"
-                      dataType="dbTime2"
-                      name="lugarHoraPrevistaLlegada"
-                      scale="7" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarActividad]"
-                      dataType="nText"
-                      name="lugarActividad" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\cargar dim.Inputs[OLE DB Destination Input].ExternalColumns[lugarTiempoParadaHoras]"
-                      dataType="i4"
-                      name="lugarTiempoParadaHoras" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -419,53 +365,6 @@
                       precision="10"
                       scale="2"
                       truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idLugar]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[idLugar]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idLugar]"
-                      name="idLugar"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[nombreLugar]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[nombreLugar]"
-                      length="100"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[nombreLugar]"
-                      name="nombreLugar"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[horaPrevistaLlegada]"
-                      dataType="dbTime2"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[horaPrevistaLlegada]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[horaPrevistaLlegada]"
-                      name="horaPrevistaLlegada"
-                      scale="7"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[actividad]"
-                      dataType="nText"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[actividad]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[actividad]"
-                      name="actividad"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[tiempoParadaHoras]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[tiempoParadaHoras]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[tiempoParadaHoras]"
-                      name="tiempoParadaHoras"
-                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -492,28 +391,6 @@
                       name="kilometrosRecorrido"
                       precision="10"
                       scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[idLugar]"
-                      dataType="i4"
-                      name="idLugar" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[nombreLugar]"
-                      dataType="wstr"
-                      length="100"
-                      name="nombreLugar" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[horaPrevistaLlegada]"
-                      dataType="dbTime2"
-                      name="horaPrevistaLlegada"
-                      scale="7" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[actividad]"
-                      dataType="nText"
-                      name="actividad" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].ExternalColumns[tiempoParadaHoras]"
-                      dataType="i4"
-                      name="tiempoParadaHoras" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -549,33 +426,6 @@
                       name="kilometrosRecorrido"
                       precision="10"
                       scale="2" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[idLugar]"
-                      dataType="i4"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[idLugar]"
-                      name="idLugar" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[nombreLugar]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[nombreLugar]"
-                      name="nombreLugar" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[horaPrevistaLlegada]"
-                      dataType="dbTime2"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[horaPrevistaLlegada]"
-                      name="horaPrevistaLlegada"
-                      scale="7" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[actividad]"
-                      dataType="nText"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[actividad]"
-                      name="actividad" />
-                    <outputColumn
-                      refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[tiempoParadaHoras]"
-                      dataType="i4"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[tiempoParadaHoras]"
-                      name="tiempoParadaHoras" />
                     <outputColumn
                       refId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -699,38 +549,6 @@
                       externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[rutaKilometrosRecorrido]"
                       lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[kilometrosRecorrido]" />
                     <inputColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[idLugar]"
-                      cachedDataType="i4"
-                      cachedName="idLugar"
-                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idLugarHistorico]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idLugar]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[nombreLugar]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="nombreLugar"
-                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarNombre]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[nombreLugar]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[horaPrevistaLlegada]"
-                      cachedDataType="dbTime2"
-                      cachedName="horaPrevistaLlegada"
-                      cachedScale="7"
-                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarHoraPrevistaLlegada]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[horaPrevistaLlegada]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[actividad]"
-                      cachedDataType="nText"
-                      cachedName="actividad"
-                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarActividad]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[actividad]" />
-                    <inputColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[tiempoParadaHoras]"
-                      cachedDataType="i4"
-                      cachedName="tiempoParadaHoras"
-                      externalMetadataColumnId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarTiempoParadaHoras]"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[tiempoParadaHoras]" />
-                    <inputColumn
                       refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].Columns[idRuta]"
                       cachedDataType="i4"
                       cachedName="idRuta"
@@ -747,10 +565,6 @@
                       refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idRutaHistorico]"
                       dataType="i4"
                       name="idRutaHistorico" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[idLugarHistorico]"
-                      dataType="i4"
-                      name="idLugarHistorico" />
                     <externalMetadataColumn
                       refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[rutaNombre]"
                       dataType="wstr"
@@ -770,24 +584,6 @@
                       name="rutaKilometrosRecorrido"
                       precision="10"
                       scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarNombre]"
-                      dataType="wstr"
-                      length="100"
-                      name="lugarNombre" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarHoraPrevistaLlegada]"
-                      dataType="dbTime2"
-                      name="lugarHoraPrevistaLlegada"
-                      scale="7" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarActividad]"
-                      dataType="nText"
-                      name="lugarActividad" />
-                    <externalMetadataColumn
-                      refId="Package\CargarDatos\load staging.Inputs[OLE DB Destination Input].ExternalColumns[lugarTiempoParadaHoras]"
-                      dataType="i4"
-                      name="lugarTiempoParadaHoras" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -837,7 +633,7 @@
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimRutaLugar]) [refTable]
-where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</property>
+where [refTable].[idRutaHistorico] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -868,12 +664,12 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idRutaLugarSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idRutaHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idLugarHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaNombre" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaDuracionAproximadaHoras" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaEsMasAtractiva" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaKilometrosRecorrido" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="lugarNombre" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="lugarHoraPrevistaLlegada" dataType="DT_DBTIME2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="lugarActividad" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="lugarTiempoParadaHoras" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="idRutaLugarSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="idRutaHistorico" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaNombre" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaDuracionAproximadaHoras" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaEsMasAtractiva" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="rutaKilometrosRecorrido" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idRuta]};#{Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idLugar]};</property>
+                  name="ParameterMap">#{Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idRuta]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -906,22 +702,6 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">idRutaHistorico</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\CargarDatos\Lookup.Inputs[Lookup Input].Columns[idLugar]"
-                      cachedDataType="i4"
-                      cachedName="idLugar"
-                      lineageId="Package\CargarDatos\Get Datos Ruta Lugar.Outputs[OLE DB Source Output].Columns[idLugar]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">idLugarHistorico</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -1329,53 +1109,55 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="134.4,41.6"
-          Id="Package\CargarDatos\load staging"
-          TopLeft="187.499989755452,293.799997956951" />
-        <NodeLayout
           Size="179.2,41.6"
           Id="Package\CargarDatos\Get Datos Ruta Lugar"
           TopLeft="368.333313208488,76.2666661363178" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\CargarDatos\Lookup"
+          TopLeft="331.6666485452,167.266665503515" />
         <NodeLayout
           Size="127.2,41.6"
           Id="Package\CargarDatos\cargar dim"
           TopLeft="469.166641032531,289.466664653752" />
         <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\CargarDatos\Lookup"
-          TopLeft="331.6666485452,167.266665503515" />
+          Size="134.4,41.6"
+          Id="Package\CargarDatos\load staging"
+          TopLeft="187.499989755452,293.799997956951" />
         <EdgeLayout
-          Id="Package\CargarDatos.Paths[OLE DB Source Output]"
-          TopLeft="457.933313208488,117.866666136318">
+          Id="Package\CargarDatos.Paths[Lookup No Match Output]"
+          TopLeft="405.533315211866,208.866665503515">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-69.8666646632882,49.3999993671974"
+              EndConnector="127.233325820665,80.5999991502368"
               Start="0,0"
-              End="-69.8666646632882,41.8999993671974">
+              End="127.233325820665,73.0999991502368">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.6999996835987" />
+                    End="0,28.9163632893275" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.6999996835987"
-                    Point2="0,24.6999996835987"
-                    Point3="-4,24.6999996835987" />
+                    Point1="0,28.9163632893275"
+                    Point2="0,32.9163632893275"
+                    Point3="4,32.9163632893275" />
                   <mssgle:LineSegment
-                    End="-65.8666646632882,24.6999996835987" />
+                    End="123.233325820665,32.9163632893275" />
                   <mssgle:CubicBezierSegment
-                    Point1="-65.8666646632882,24.6999996835987"
-                    Point2="-69.8666646632882,24.6999996835987"
-                    Point3="-69.8666646632882,28.6999996835987" />
+                    Point1="123.233325820665,32.9163632893275"
+                    Point2="127.233325820665,32.9163632893275"
+                    Point3="127.233325820665,36.9163632893275" />
                   <mssgle:LineSegment
-                    End="-69.8666646632882,41.8999993671974" />
+                    End="127.233325820665,73.0999991502368" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="7.81027619158225,37.9163632893275,111.6127734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1415,75 +1197,47 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CargarDatos.Paths[Lookup No Match Output]"
-          TopLeft="405.533315211866,208.866665503515">
+          Id="Package\CargarDatos.Paths[OLE DB Source Output]"
+          TopLeft="457.933313208488,117.866666136318">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="127.233325820665,80.5999991502368"
+              EndConnector="-69.8666646632882,49.3999993671974"
               Start="0,0"
-              End="127.233325820665,73.0999991502368">
+              End="-69.8666646632882,41.8999993671974">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.9163632893275" />
+                    End="0,20.6999996835987" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.9163632893275"
-                    Point2="0,32.9163632893275"
-                    Point3="4,32.9163632893275" />
+                    Point1="0,20.6999996835987"
+                    Point2="0,24.6999996835987"
+                    Point3="-4,24.6999996835987" />
                   <mssgle:LineSegment
-                    End="123.233325820665,32.9163632893275" />
+                    End="-65.8666646632882,24.6999996835987" />
                   <mssgle:CubicBezierSegment
-                    Point1="123.233325820665,32.9163632893275"
-                    Point2="127.233325820665,32.9163632893275"
-                    Point3="127.233325820665,36.9163632893275" />
+                    Point1="-65.8666646632882,24.6999996835987"
+                    Point2="-69.8666646632882,24.6999996835987"
+                    Point3="-69.8666646632882,28.6999996835987" />
                   <mssgle:LineSegment
-                    End="127.233325820665,73.0999991502368" />
+                    End="-69.8666646632882,41.8999993671974" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="7.81027619158225,37.9163632893275,111.6127734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\load staging">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\CargarDatos\Get Datos Ruta Lugar">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CargarDatos\cargar dim">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -1507,6 +1261,32 @@ where [refTable].[idRutaHistorico] = ? and [refTable].[idLugarHistorico] = ?</pr
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\cargar dim">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargarDatos\load staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
